@@ -25,8 +25,8 @@ function AboutPage() {
 
         const data = await response.json();
         setUsers(data);
-      } catch (error: any) {
-        setError(error.message);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : "Something went wrong");
       } finally {
         setIsLoading(false);
       }
