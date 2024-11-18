@@ -157,7 +157,7 @@ function DashboardPage() {
         />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {displayedUsers.length > 0 ? (
+          {displayedUsers.length > 0 && (
             displayedUsers.map((user) => (
               <div
                 key={user.login.uuid}
@@ -254,23 +254,24 @@ function DashboardPage() {
                 </div>
               </div>
             ))
-          ) : (
-            <div className="flex flex-col items-center justify-center space-y-6">
-              <p className="text-4xl font-bold text-stone-700 text-center">
-                No users available for the current filter or search
-              </p>
-              <button
-                onClick={() => {
-                  setFilter("all");
-                  setSearch("");
-                }}
-                className="bg-stone-700 hover:bg-stone-800 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl"
-              >
-                Reset Filter
-              </button>
-            </div>
           )}
         </div>
+        {displayedUsers.length === 0 && (
+            <div className="flex flex-col items-center justify-center space-y-6">
+            <p className="text-4xl font-bold text-stone-700 text-center w-1/2">
+              No users available for the current filter or search
+            </p>
+            <button
+              onClick={() => {
+                setFilter("all");
+                setSearch("");
+              }}
+              className="bg-stone-700 hover:bg-stone-800 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Reset Filter
+            </button>
+          </div>
+          )}
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
