@@ -44,7 +44,7 @@ function DashboardPage() {
     };
 
     fetchUsers();
-  },[currentPage]);
+  }, [currentPage]);
 
   const handleFilterData = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter(e.target.value);
@@ -159,7 +159,7 @@ function DashboardPage() {
         />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {displayedUsers.length > 0 && (
+          {displayedUsers.length > 0 &&
             displayedUsers.map((user) => (
               <div
                 key={user.login.uuid}
@@ -255,11 +255,10 @@ function DashboardPage() {
                   </div>
                 </div>
               </div>
-            ))
-          )}
+            ))}
         </div>
         {displayedUsers.length === 0 && (
-            <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="flex flex-col items-center justify-center space-y-6">
             <p className="text-4xl font-bold text-stone-700 text-center lg:w-1/2">
               No users available for the current filter or search
             </p>
@@ -273,7 +272,7 @@ function DashboardPage() {
               Reset Filter
             </button>
           </div>
-          )}
+        )}
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
