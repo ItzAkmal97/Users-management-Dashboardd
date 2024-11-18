@@ -75,6 +75,7 @@ function DashboardPage() {
   const startIndex = (currentPage - 1) * usersPerPage;
   const endIndex = startIndex + usersPerPage;
   const displayedUsers = filteredUsers.slice(startIndex, endIndex);
+  const zeroUsers = displayedUsers.length === 0;
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -154,6 +155,7 @@ function DashboardPage() {
           onNext={handleNext}
           onPrevious={handlePrevious}
           onPageChange={handlePageChange}
+          onZeroUsers={zeroUsers}
         />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -258,7 +260,7 @@ function DashboardPage() {
         </div>
         {displayedUsers.length === 0 && (
             <div className="flex flex-col items-center justify-center space-y-6">
-            <p className="text-4xl font-bold text-stone-700 text-center w-1/2">
+            <p className="text-4xl font-bold text-stone-700 text-center lg:w-1/2">
               No users available for the current filter or search
             </p>
             <button
@@ -278,6 +280,7 @@ function DashboardPage() {
           onNext={handleNext}
           onPrevious={handlePrevious}
           onPageChange={handlePageChange}
+          onZeroUsers={zeroUsers}
         />
       </div>
     </div>

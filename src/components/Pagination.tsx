@@ -4,6 +4,7 @@ type PagProps = {
   onPageChange: (page: number) => void;
   onPrevious: () => void;
   onNext: () => void;
+  onZeroUsers: boolean
 };
 
 function Pagination({
@@ -12,6 +13,7 @@ function Pagination({
   onPageChange,
   onPrevious,
   onNext,
+  onZeroUsers
 }: PagProps) {
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -58,14 +60,14 @@ function Pagination({
       <div className="flex flex-1 justify-between sm:hidden">
         <button
           onClick={onPrevious}
-          disabled={currentPage === 1}
+          disabled={currentPage === 1 || onZeroUsers}
           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
         >
           Previous
         </button>
         <button
           onClick={onNext}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || onZeroUsers}
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
         >
           Next
@@ -87,7 +89,7 @@ function Pagination({
           >
             <button
               onClick={onPrevious}
-              disabled={currentPage === 1}
+              disabled={currentPage === 1 || onZeroUsers}
               className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
             >
               <span className="sr-only">Previous</span>
